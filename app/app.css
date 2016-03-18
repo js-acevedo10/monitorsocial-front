@@ -1,0 +1,12 @@
+/* app css stylesheet */
+
+html {
+    max-height: 100vh;
+}
+body {
+    background-color: black;
+}
+.side-a {
+    text-decoration: none;
+    color: black;
+}
