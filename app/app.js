@@ -5,6 +5,7 @@ angular.module('monitorSocial', [
     'ngRoute',
     'ngStorage',
     'monitorSocial.home',
+    'monitorSocial.twitterList',
     'monitorSocial.login'
 ]).
 config(['$routeProvider', function ($routeProvider) {

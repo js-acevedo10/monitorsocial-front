@@ -19,13 +19,14 @@ angular.module('monitorSocial.home', ['ngRoute', 'ngStorage', 'cgBusy'])
     });
 }])
 
-.controller('HomeCtrl', ['$scope', '$localStorage', '$location', '$http', function ($scope, $localStorage, $location, $http) {    
+.controller('HomeCtrl', ['$scope', '$localStorage', '$location', '$http', '$interval', function ($scope, $localStorage, $location, $http, $interval) {    
     //CUENTA UNREAD DE TWITTER
     $scope.twitter = {
         unreads: undefined,
         count: 0
     };
-    $scope.tUnreadPromise = $http({
+    function readFromTwitter() {
+        $scope.tUnreadPromise = $http({
         method: 'GET',
         url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
         //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
@@ -37,7 +38,9 @@ angular.module('monitorSocial.home', ['ngRoute', 'ngStorage', 'cgBusy'])
         $scope.twitter.count = response.data.count;
     }, function errorCallback(response) {
 
-    });
+    })};
+    readFromTwitter();
+    $interval(readFromTwitter, 1 * 60 * 1000);
     
     //CUENTA UNREAD DE FACEBOOK
     $scope.facebook = {

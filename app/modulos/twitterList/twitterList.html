@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="jumbotron" ng-repeat="mensaje in twitter.mensajes" style="padding: 5px 10px 5px 10px; margin-bottom:10px;">
+        <div class="row">
+            <div class="col-sm-2">
+                <p style="margin-bottom:0"><b>@{{mensaje.sender}}</b></p>
+            </div>
+            <div class="col-sm-7">
+                <p style="margin-bottom:0">{{mensaje.mensaje}}</p>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-default btn-block">Abrir</button>
+                <button class="btn btn-default btn-block">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
