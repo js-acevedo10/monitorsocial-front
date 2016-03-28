@@ -1,0 +1,19 @@
+<div class="container-fluid row">
+    <div class="jumbotron col-md-4 col-md-offset-4" style="margin-top:10vh;">
+        <form name="loginForm" class="form" ng-submit="login()" novalidate>
+            <div class="form-group" ng-class="{'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine}">
+                <label>Email</label>
+                <input type="email" class="form-control" ng-model="loginForm.email" required>
+                <p ng-show="loginForm.email.$invalid" class="help-block">Ingresa un correo válido.</p>
+            </div>
+            <div class="form-group" ng-class="{'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine}">
+                <label>Password</label>
+                <input type="password" class="form-control" ng-model="loginForm.password" required>
+                <p ng-show="loginForm.password.$invalid" class="help-block">Tu contraseña es requerida.</p>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-default btn-block"  ng-disabled="loginForm.$invalid">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

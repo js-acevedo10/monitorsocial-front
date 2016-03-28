@@ -1,58 +1,56 @@
 <div class="container-fluid" style="padding-top:30px; text-align:center">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
+            <a href="">
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+                    <h3>Nuevos Mensajes de Twitter sin leer:</h3>
+                    <h1>{{twitter.count}}</h1>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6">
             <a href="">
                 <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Mensajes de Hoy:</h3>
-                    <h1 ng-hide="!today">{{mensajes.hoy}}</h1>
+                    <h3>Nuevos Mensajes de Facebook:</h3>
+                    <h1>{{facebook.count}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
             <a href="">
                 <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Mensajes de Twitter:</h3>
-                    <h1 ng-hide="!today">{{mensajes.twitter}}</h1>
+                    <h3>Nuevos Mensajes Positivos:</h3>
+                    <h1>{{positivos.count}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
             <a href="">
                 <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Mensajes de Facebook:</h3>
-                    <h1 ng-hide="!today">{{mensajes.facebook}}</h1>
+                    <h3>Nuevos Mensajes Neutrales:</h3>
+                    <h1>{{neutrales.count}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
             <a href="">
                 <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Mensajes Positivos:</h3>
-                    <h1 ng-hide="!today">{{mensajes.positivos}}</h1>
+                    <h3>Nuevos Mensajes Negativos:</h3>
+                    <h1>{{negativos.count}}</h1>
                 </div>
             </a>
         </div>
-        <div class="col-sm-4">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Mensajes Neutrales:</h3>
-                    <h1 ng-hide="!today">{{mensajes.neutrales}}</h1>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Mensajes Negativos:</h3>
-                    <h1 ng-hide="!today">{{mensajes.negativos}}</h1>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-12">
+        <div class="col-sm-6">
             <div class="col-xs-12 jumbotron btn-dashboard" style="text-align:left">
                 <h3>Último Post Relevante:</h3>
-                <p ng-hide="!today">{{mensajes.relevante}}</p>
+                <p>{{relevante.count}}</p>
                 <button class="btn btn-default">Registrar Usuarios Relevantes</button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-xs-12 jumbotron btn-dashboard" style="text-align:left">
+                <h3>Configuración Rápida (módulo temporal)</h3>
+                <button class="btn btn-default" ng-click="startListening()">{{twitterListenerButton}}</button>
             </div>
         </div>
     </div>

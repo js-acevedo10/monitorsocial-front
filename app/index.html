@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse" style="border-radius:0; margin-bottom:0">
+    <nav class="navbar navbar-inverse" style="border-radius:0; margin-bottom:0" ng-controller="IndexCtrl">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -36,6 +37,20 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!-- CONTENEDOR DE LINKS USUARIO LOGGEADO -->
+                    <ul class="nav navbar-nav navbar-right" ng-show="$storage.userInfo !== null && $storage.userInfo !== undefined">
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$storage.userInfo.name}}<span class="caret"></span></a>
+                            <!-- DROPDOWN DE PILOTO -->
+                            <ul class="dropdown-menu">
+                                <li><a ng-href="">My Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="" ng-click="logOut()">Log Out</a></li>
+                            </ul>
+                            <!-- ! DROPDOWN DE PILOTO -->
+                        </li>
+                    </ul>
+                    <!-- ! CONTENEDOR DE LINKS USUARIO LOGGEADO -->
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -56,7 +71,10 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="app.js"></script>
-    <script src="modulos/nuevosMensajes/nuevosMensajes.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="bower_components/angular-base64/angular-base64.js"></script>
+    <script src="bower_components/angular-busy/dist/angular-busy.min.js"></script>
+    <script src="modulos/login/login.js"></script>
     <script src="modulos/home/home.js"></script>
 </body>
 
