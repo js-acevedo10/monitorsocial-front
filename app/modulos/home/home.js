@@ -19,13 +19,7 @@ angular.module('monitorSocial.home', ['ngRoute', 'ngStorage', 'cgBusy'])
     });
 }])
 
-.controller('HomeCtrl', ['$scope', '$localStorage', '$location', '$http', '$interval', function ($scope, $localStorage, $location, $http, $interval) {
-    $scope.greaterThan = function(prop, val){
-        return function(item){
-            return item[prop] > val;
-        }
-    }
-    
+.controller('HomeCtrl', ['$scope', '$localStorage', '$location', '$http', '$interval', function ($scope, $localStorage, $location, $http, $interval) {    
     //CUENTA UNREAD DE TWITTER
     $scope.twitter = {
         unreads: undefined,
