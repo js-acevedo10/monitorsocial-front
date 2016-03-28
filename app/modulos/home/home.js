@@ -14,34 +14,42 @@ angular.module('monitorSocial.home', ['ngRoute', 'ngStorage', 'cgBusy'])
                 } else {
                     return true;
                 }
-                }]
+            }]
         }
     });
 }])
 
-.controller('HomeCtrl', ['$scope', '$localStorage', '$location', '$http', '$interval', function ($scope, $localStorage, $location, $http, $interval) {    
+.controller('HomeCtrl', ['$scope', '$localStorage', '$location', '$http', '$interval', function ($scope, $localStorage, $location, $http, $interval) {
+    $scope.greaterThan = function(prop, val){
+        return function(item){
+            return item[prop] > val;
+        }
+    }
+    
     //CUENTA UNREAD DE TWITTER
     $scope.twitter = {
         unreads: undefined,
         count: 0
     };
+
     function readFromTwitter() {
         $scope.tUnreadPromise = $http({
-        method: 'GET',
-        url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
-        //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
-        headers: {
-            "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
-        }
-    }).then(function successCallback(response) {
-        $scope.twitter.unreads = response.data.mensajes;
-        $scope.twitter.count = response.data.count;
-    }, function errorCallback(response) {
+            method: 'GET',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
+            headers: {
+                "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
+            }
+        }).then(function successCallback(response) {
+            $scope.twitter.unreads = response.data.mensajes;
+            $scope.twitter.count = response.data.count;
+        }, function errorCallback(response) {
 
-    })};
+        })
+    };
     readFromTwitter();
     $interval(readFromTwitter, 1 * 60 * 1000);
-    
+
     //CUENTA UNREAD DE FACEBOOK
     $scope.facebook = {
         unreads: undefined,
@@ -59,60 +67,78 @@ angular.module('monitorSocial.home', ['ngRoute', 'ngStorage', 'cgBusy'])
     }, function errorCallback(response) {
 
     });*/
-    
+
     //CUENTA UNREAD DE POSITIVOS
     $scope.positivos = {
         unreads: undefined,
         count: 0
     };
-    /*$scope.tUnreadPromise = $http({
-        method: 'GET',
-        url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
-        headers: {
-            "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
-        }
-    }).then(function successCallback(response) {
-        $scope.twitter.unreads = response.data;
-        $scope.twitter.count = response.data.length;
-    }, function errorCallback(response) {
 
-    });*/
-    
+    function getPositive() {
+        $scope.posUnreadPromise = $http({
+            method: 'GET',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/positiveMessages',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/positiveMessages',
+            headers: {
+                "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
+            }
+        }).then(function successCallback(response) {
+            $scope.positivos.unreads = response.data.mensajes;
+            $scope.positivos.count = response.data.count;
+        }, function errorCallback(response) {
+
+        })
+    };
+    getPositive();
+    $interval(getPositive, 1*60*1000);
+
     //CUENTA UNREAD DE NEGATIVOS
     $scope.negativos = {
         unreads: undefined,
         count: 0
     };
-    /*$scope.tUnreadPromise = $http({
-        method: 'GET',
-        url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
-        headers: {
-            "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
-        }
-    }).then(function successCallback(response) {
-        $scope.twitter.unreads = response.data;
-        $scope.twitter.count = response.data.length;
-    }, function errorCallback(response) {
 
-    });*/
-    
+    function getNegative() {
+        $scope.negUnreadPromise = $http({
+            method: 'GET',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/negativeMessages',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/negativeMessages',
+            headers: {
+                "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
+            }
+        }).then(function successCallback(response) {
+            $scope.negativos.unreads = response.data.mensajes;
+            $scope.negativos.count = response.data.count;
+        }, function errorCallback(response) {
+
+        })
+    };
+    getNegative();
+    $interval(getNegative, 1*60*1000);
+
     //CUENTA UNREAD DE NEUTRALES
     $scope.neutrales = {
         unreads: undefined,
         count: 0
     };
-    /*$scope.tUnreadPromise = $http({
-        method: 'GET',
-        url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
-        headers: {
-            "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
-        }
-    }).then(function successCallback(response) {
-        $scope.twitter.unreads = response.data;
-        $scope.twitter.count = response.data.length;
-    }, function errorCallback(response) {
 
-    });*/
+    function getNeutral() {
+        $scope.neutUnreadPromise = $http({
+            method: 'GET',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/neutralMessages',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/neutralMessages',
+            headers: {
+                "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
+            }
+        }).then(function successCallback(response) {
+            $scope.neutrales.unreads = response.data.mensajes;
+            $scope.neutrales.count = response.data.count;
+        }, function errorCallback(response) {
+
+        })
+    };
+    getNeutral();
+    $interval(getNeutral, 1*60*1000);
 
     //BARRA DE HERRAMIENTAS PROVISIONAL
     $scope.twitterListenerButton = "Start Listening on Twitter";

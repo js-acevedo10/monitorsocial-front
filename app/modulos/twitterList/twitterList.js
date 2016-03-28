@@ -25,7 +25,7 @@ angular.module('monitorSocial.twitterList', ['ngRoute', 'ngStorage', 'cgBusy'])
         mensajes: undefined
     };
     function loadTwitterMensajes() {
-        $scope.tUnreadPromise = $http({
+        $scope.unreadPromise = $http({
             method: 'GET',
             url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
             //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',

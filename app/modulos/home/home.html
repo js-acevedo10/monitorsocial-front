@@ -18,25 +18,57 @@
         </div>
         <div class="col-sm-4">
             <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Nuevos Mensajes Positivos:</h3>
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="posUnreadPromise">
+                    <h3>Mensajes Positivos:</h3>
                     <h1>{{positivos.count}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
             <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Nuevos Mensajes Neutrales:</h3>
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="neutUnreadPromise">
+                    <h3>Mensajes Neutrales:</h3>
                     <h1>{{neutrales.count}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
             <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard">
-                    <h3>Nuevos Mensajes Negativos:</h3>
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="negUnreadPromise">
+                    <h3>Mensajes Negativos:</h3>
                     <h1>{{negativos.count}}</h1>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="">
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+                    <h3>Soporte:</h3>
+                    <h1>{{(twitter.unreads | filter : {categoria:1}).length}}</h1>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="">
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+                    <h3>Quejas:</h3>
+                    <h1>{{(twitter.unreads | filter : {categoria:2}).length}}</h1>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="">
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+                    <h3>Peticiones:</h3>
+                    <h1>{{(twitter.unreads | filter : {categoria:3}).length}}</h1>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="">
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+                    <h3>Reclamos:</h3>
+                    <h1>{{(twitter.unreads | filter : {categoria:4}).length}}</h1>
                 </div>
             </a>
         </div>
