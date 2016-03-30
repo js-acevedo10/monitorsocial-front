@@ -1,0 +1,98 @@
+<div class="container-fluid" style="text-align:center">
+    <div class="jumbotron row" style="padding: 10px 10px 5px 10px">
+        <p class="text-left">Categoría:</p>
+        <div class="col-xs-6 col-sm-3" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {categoria:1}).length}} <p>Soporte</p></h3>
+            </button>
+        </div>
+        <div class="col-xs-6 col-sm-3" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {categoria:2}).length}} <p>Quejas</p></h3>
+            </button>
+        </div>
+        <div class="col-xs-6 col-sm-3" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {categoria:3}).length}} <p>Peticiones</p></h3>                
+            </button>
+        </div>
+        <div class="col-xs-6 col-sm-3" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {categoria:4}).length}} <p>Reclamos</p></h3>
+            </button>
+        </div>
+    </div>
+
+    <div class="jumbotron row" style="padding: 10px 10px 5px 10px">
+        <p class="text-left">Estado:</p>
+        <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {etapa:0}).length}} <p>Registrada</p></h3>
+            </button>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {etapa:1}).length}} <p>En Cola</p></h3>
+            </button>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {etapa:2}).length}} <p>Investigando</p></h3>
+            </button>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {etapa:3}).length}} <p>Esperando</p></h3>
+            </button>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {etapa:4}).length}} <p>Resuelta</p></h3>
+            </button>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
+            <button class="btn btn-default btn-block">
+                <h3>{{(casos | filter: {etapa:5}).length}} <p>Confirmada</p></h3>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="padding:0">
+            <div class="col-xs-12 jumbotron" style="padding: 5px 10px" cg-busy="casosPromise">
+                <table class="table table-condensed table-striped" style="text-align:left">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Prioridad</th>
+                            <th>Categoría</th>
+                            <th>Descripcion</th>
+                            <th>Empresa</th>
+                            <th>Persona</th>
+                            <th>Creado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="caso in casos">
+                            <td>{{formatEstado(caso.estado)}}</td>
+                            <td>{{formatPrioridad(caso.prioridad)}}</td>
+                            <td>{{formatCategoria(caso.categoria)}}</td>
+                            <td class="col-md-3">{{caso.descripcion | limitTo: 45}}{{caso.descripcion.length > 45 ? '...' : ''}}</td>
+                            <td class="col-md-2">{{caso.empresa.nombre}}</td>
+                            <td class="col-md-2">{{caso.persona.nombre}}</td>
+                            <td>{{caso.fechaCreacion}}</td>
+                            <td><a href="#/incidencia/{{caso.id.$oid}}" class="btn-sm" style="margin:0">Abrir</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--
+        <div class="col-sm-3" style="padding-right:0">
+            <div class="col-xs-12 jumbotron">
+                
+            </div>
+        </div>
+        -->
+    </div>
+</div>
+<link rel="stylesheet" href="/modulos/incidencias/incidencias.css">

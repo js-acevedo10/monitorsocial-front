@@ -1,0 +1,22 @@
+<div class="container-fluid" cg-busy="casoPromise">
+    <div class="jumbotron" style="padding: 5px 10px">
+        <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" ng-class="{'active' : nav.res}"><a href="" ng-click="enableRes()">Resumen</a></li>
+            <li role="presentation" ng-class="{'active' : nav.not}"><a href="" ng-click="enableNot()">Notas</a></li>
+            <li role="presentation" ng-class="{'active' : nav.seg}"><a href=""ng-click="enableSeg()">Seguimiento</a></li>
+            <li role="presentation" ng-class="{'active' : nav.sol}"><a href=""ng-click="enableSol()">Soluciones</a></li>
+        </ul>
+        <div class="container-fluid" ng-show="nav.res" style="background-color:white">
+            <h3>{{caso.id.$oid}}</h3>
+        </div>
+        <div class="container-fluid" ng-show="nav.not" style="background-color:white">
+            <h3>{{caso.descripcion}}</h3>
+        </div>
+        <div class="container-fluid" ng-show="nav.seg" style="background-color:white">
+            <h3>{{caso.fechaCreacion}}</h3>
+        </div>
+        <div class="container-fluid" ng-show="nav.sol" style="background-color:white">
+            <h3>{{caso.twitterUserId}}</h3>
+        </div>
+    </div>
+</div>

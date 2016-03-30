@@ -2,10 +2,10 @@
     <div class="jumbotron" ng-repeat="mensaje in twitter.mensajes" style="padding: 5px 10px 5px 10px; margin-bottom:10px;">
         <div class="row">
             <div class="col-sm-2">
-                <p style="margin-bottom:0"><b>@{{mensaje.sender}}</b></p>
+                <p style="margin-bottom:0"><b>@{{mensaje.userScreenName}}</b></p>
             </div>
             <div class="col-sm-7">
-                <p style="margin-bottom:0">{{mensaje.mensaje}}</p>
+                <p style="margin-bottom:0">{{mensaje.text | limitTo: 100}}{{mensaje.text.length > 100 ? '...' : ''}}</p>
             </div>
             <div class="col-sm-3">
                 <button class="btn btn-default btn-block">Abrir</button>

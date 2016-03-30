@@ -10,7 +10,7 @@ angular.module('monitorSocial.login', ['ngRoute', 'ngStorage', 'base64'])
                     if ($localStorage.userInfo === null || $localStorage.userInfo === undefined) {
                         return true;
                     } else {
-                        $location.path("/home");
+                        $location.path("/mandoSocial");
                         return false;
                     }
                 }]
@@ -39,7 +39,7 @@ angular.module('monitorSocial.login', ['ngRoute', 'ngStorage', 'base64'])
             }).finally(function () {
                 $scope.loginForm.password = "";
                 if($localStorage.userInfo !== null && $localStorage.userInfo !== undefined) {
-                    $location.path("/home");
+                    $location.path("/mandoSocial");
                 }
             });
         };

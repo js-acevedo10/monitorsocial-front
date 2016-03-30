@@ -4,13 +4,15 @@
 angular.module('monitorSocial', [
     'ngRoute',
     'ngStorage',
-    'monitorSocial.home',
+    'monitorSocial.mandoSocial',
     'monitorSocial.twitterList',
+    'monitorSocial.incidencias',
+    'monitorSocial.incidencia',
     'monitorSocial.login'
 ]).
 config(['$routeProvider', function ($routeProvider) {
     $routeProvider.otherwise({
-        redirectTo: '/home'
+        redirectTo: '/mandoSocial'
     });
 }])
 .controller('IndexCtrl', ['$scope', '$localStorage', '$location', function ($scope, $localStorage, $location) {
