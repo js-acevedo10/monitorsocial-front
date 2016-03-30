@@ -3,56 +3,56 @@
         <p class="text-left">Categoría:</p>
         <div class="col-xs-6 col-sm-3" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {categoria:1}).length}} <p>Soporte</p></h3>
+                <h3>{{(casos | filter: {categoria:'Soporte'}).length}} <p>Soporte</p></h3>
             </button>
         </div>
         <div class="col-xs-6 col-sm-3" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {categoria:2}).length}} <p>Quejas</p></h3>
+                <h3>{{(casos | filter: {categoria:'Queja'}).length}} <p>Quejas</p></h3>
             </button>
         </div>
         <div class="col-xs-6 col-sm-3" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {categoria:3}).length}} <p>Peticiones</p></h3>                
+                <h3>{{(casos | filter: {categoria:'Petición'}).length}} <p>Peticiones</p></h3>                
             </button>
         </div>
         <div class="col-xs-6 col-sm-3" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {categoria:4}).length}} <p>Reclamos</p></h3>
+                <h3>{{(casos | filter: {categoria:'Reclamo'}).length}} <p>Reclamos</p></h3>
             </button>
         </div>
     </div>
 
     <div class="jumbotron row" style="padding: 10px 10px 5px 10px">
-        <p class="text-left">Estado:</p>
+        <p class="text-left">Etapa:</p>
         <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {etapa:0}).length}} <p>Registrada</p></h3>
+                <h3>{{(casos | filter: {etapa:'Registrada'}).length}} <p>Registrada</p></h3>
             </button>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {etapa:1}).length}} <p>En Cola</p></h3>
+                <h3>{{(casos | filter: {etapa:'En Cola'}).length}} <p>En Cola</p></h3>
             </button>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {etapa:2}).length}} <p>Investigando</p></h3>
+                <h3>{{(casos | filter: {etapa:'Investigando'}).length}} <p>Investigando</p></h3>
             </button>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {etapa:3}).length}} <p>Esperando</p></h3>
+                <h3>{{(casos | filter: {etapa:'Esperando'}).length}} <p>Esperando</p></h3>
             </button>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {etapa:4}).length}} <p>Resuelta</p></h3>
+                <h3>{{(casos | filter: {etapa:'Resuelta'}).length}} <p>Resuelta</p></h3>
             </button>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2" style="padding:0">
             <button class="btn btn-default btn-block">
-                <h3>{{(casos | filter: {etapa:5}).length}} <p>Confirmada</p></h3>
+                <h3>{{(casos | filter: {etapa:'Confirmada'}).length}} <p>Confirmada</p></h3>
             </button>
         </div>
     </div>
@@ -62,7 +62,7 @@
                 <table class="table table-condensed table-striped" style="text-align:left">
                     <thead>
                         <tr>
-                            <th>Estado</th>
+                            <th>Etapa</th>
                             <th>Prioridad</th>
                             <th>Categoría</th>
                             <th>Descripcion</th>
@@ -73,9 +73,9 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="caso in casos">
-                            <td>{{formatEstado(caso.estado)}}</td>
-                            <td>{{formatPrioridad(caso.prioridad)}}</td>
-                            <td>{{formatCategoria(caso.categoria)}}</td>
+                            <td>{{caso.etapa}}</td>
+                            <td>{{caso.prioridad}}</td>
+                            <td>{{caso.categoria}}</td>
                             <td class="col-md-3">{{caso.descripcion | limitTo: 45}}{{caso.descripcion.length > 45 ? '...' : ''}}</td>
                             <td class="col-md-2">{{caso.empresa.nombre}}</td>
                             <td class="col-md-2">{{caso.persona.nombre}}</td>
