@@ -1,4 +1,4 @@
-<div class="container-fluid" style="text-align:center">
+<div class="container-fluid" style="text-align:center; margin-top: 40px;">
     <div class="jumbotron row" style="padding: 10px 10px 5px 10px">
         <p class="text-left">Categoría:</p>
         <div class="col-xs-6 col-sm-3" style="padding:0">
@@ -66,17 +66,17 @@
                             <th>Prioridad</th>
                             <th>Categoría</th>
                             <th>Descripcion</th>
-                            <th>Empresa</th>
-                            <th>Persona</th>
+                            <th>Remite</th>
+                            <th>Encargado</th>
                             <th>Creado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="caso in casos">
+                        <tr ng-repeat="caso in casos" ng-class="{'danger':caso.prioridad=='Alta', 'warning':caso.prioridad=='Media'}">
                             <td>{{caso.etapa}}</td>
                             <td>{{caso.prioridad}}</td>
                             <td>{{caso.categoria}}</td>
-                            <td class="col-md-3">{{caso.descripcion | limitTo: 45}}{{caso.descripcion.length > 45 ? '...' : ''}}</td>
+                            <td class="col-md-3">{{caso.descripcion | limitTo: 42}}{{caso.descripcion.length > 42 ? '...' : ''}}</td>
                             <td class="col-md-2">{{caso.empresa.nombre}}</td>
                             <td class="col-md-2">{{caso.persona.nombre}}</td>
                             <td>{{caso.fechaCreacion}}</td>
@@ -84,6 +84,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="container-fluid" ng-show="error">
+                    <h2>No hay incidencias registradas en el sistema.</h2>
+                </div>
             </div>
         </div>
         <!--

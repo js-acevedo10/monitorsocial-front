@@ -1,5 +1,5 @@
 <div class="container-fluid row">
-    <div class="jumbotron col-md-4 col-md-offset-4" style="margin-top:10vh;">
+    <div class="jumbotron col-md-4 col-md-offset-4" style="margin-top:10vh;" cg-busy="loginPrms">
         <form name="loginForm" class="form" ng-submit="login()" novalidate>
             <div class="form-group" ng-class="{'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine}">
                 <label>Email</label>
