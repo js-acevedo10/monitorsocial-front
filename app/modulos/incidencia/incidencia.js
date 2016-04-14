@@ -55,6 +55,7 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
     $scope.casos = {};
     $scope.casoPromise = $http({
         method: 'GET',
+        //url: 'https://monitorsocial-back.herokuapp.com/casos/' + $localStorage.userInfo.id + /caso/ + $routeParams.idCaso,
         url: 'http://localhost:8081/casos/' + $localStorage.userInfo.id + /caso/ + $routeParams.idCaso,
         headers: {
             "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
@@ -63,6 +64,7 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         $scope.caso = response.data;
         $scope.casoPromise = $http({
             method: 'GET',
+            //url: 'https://monitorsocial-back.herokuapp.com/twitterUsers/' + $scope.caso.twitterUserId,
             url: 'http://localhost:8081/twitterUsers/' + $scope.caso.twitterUserId,
             headers: {
                 "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null

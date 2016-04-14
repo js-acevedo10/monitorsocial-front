@@ -61,6 +61,7 @@ angular.module('monitorSocial.incidencias', ['ngRoute', 'ngStorage', 'cgBusy'])
     };
     $scope.casosPromise = $http({
         method: 'GET',
+        //url: 'https://monitorsocial-back.herokuapp.com/casos/' + $localStorage.userInfo.id,
         url: 'http://localhost:8081/casos/' + $localStorage.userInfo.id,
         headers: {
             "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
