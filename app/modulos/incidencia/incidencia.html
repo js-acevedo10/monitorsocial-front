@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/modulos/incidencia/incidencia.css">
 <div class="container-fluid" cg-busy="casoPromise">
     <div class="jumbotron" style="padding: 5px 10px">
         <ul class="nav nav-tabs nav-justified">
@@ -6,17 +7,87 @@
             <li role="presentation" ng-class="{'active' : nav.seg}"><a href=""ng-click="enableSeg()">Seguimiento</a></li>
             <li role="presentation" ng-class="{'active' : nav.sol}"><a href=""ng-click="enableSol()">Soluciones</a></li>
         </ul>
+        <!--PILL DE RESUMEN-->
         <div class="container-fluid" ng-show="nav.res" style="background-color:white">
-            <h3>{{caso.id.$oid}}</h3>
-        </div>
+            <div class="jumbotron cliente-pill">
+                <div class="jumbotron inner-cliente">
+                   <p>Mensaje:</p>
+                    <div class="row form">
+                        <div class="col-sm-3">
+                            <label for="nombre">Fecha Creación:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.fechaCreacion}}">
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="nombre">Etapa:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.etapa}}">
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="nombre">Prioridad:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.prioridad}}">
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="nombre">Vencimiento:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.fechaCreacion}}">
+                        </div>
+                        <div class="col-xs-12">
+                            <label for="nombre">Mensaje:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.descripcion}}">
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Información del Remitente:</p>
+                    <img src="{{caso.twitterUser.profileImageUrl}}" alt="" style="margin-bottom: 10px;">
+                    <div class="row form">
+                        <div class="col-md-3 col-sm-4 form-group">
+                            <label for="nombre">Nombre:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.twitterUser.name}}">
+                        </div>
+                        <div class="col-md-3 col-sm-4 form-group">
+                            <label for="nombre">Usuario:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="@{{caso.twitterUser.screenName}}">
+                        </div>
+                        <div class="col-md-3 col-sm-4 form-group">
+                            <label for="nombre">Ubicación:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.twitterUser.timeZone}}">
+                        </div>
+                        <div class="col-md-3 col-sm-4 form-group">
+                            <label for="nombre">Amigos:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.twitterUser.friendsCount}}">
+                        </div>
+                        <div class="col-md-3 col-sm-4 form-group">
+                            <label for="nombre">Seguidores:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.twitterUser.followersCount}}">
+                        </div>
+                        <div class="col-md-3 col-sm-4 form-group">
+                            <label for="nombre">Casos Abiertos:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.twitterUser.casos.length}}">
+                        </div>
+                        <div class="col-md-3 col-sm-4 form-group">
+                            <label for="nombre">Interacciones:</label><br>
+                            <input class="input form-control" type="text" disabled placeholder="{{caso.twitterUser.statuses.length}}">
+                        </div>
+                        <div class="col-md-3 col-sm-4 form-group">
+                            <label for="nombre">Usuario:</label><br>
+                            <button class="btn btn-default btn-block">Ver Perfil</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- ! PILL DE RESUMEN-->
+        
+        <!--PILL DE NOTAS-->
         <div class="container-fluid" ng-show="nav.not" style="background-color:white">
             <h3>{{caso.descripcion}}</h3>
-        </div>
+        </div><!-- ! PILL DE NOTAS-->
+        
+        <!--PILL DE SEGUIMIENTO-->
         <div class="container-fluid" ng-show="nav.seg" style="background-color:white">
             <h3>{{caso.fechaCreacion}}</h3>
-        </div>
+        </div><!-- ! PILL DE SEGUIMIENTO-->
+        
+        <!--PILL DE SOLUCIONES-->
         <div class="container-fluid" ng-show="nav.sol" style="background-color:white">
             <h3>{{caso.twitterUserId}}</h3>
-        </div>
+        </div><!-- ! PILL DE SOLUCIONES-->
     </div>
 </div>

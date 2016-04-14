@@ -20,6 +20,7 @@ angular.module('monitorSocial.incidencias', ['ngRoute', 'ngStorage', 'cgBusy'])
 }])
 
 .controller('IncidenciasListCtrl', ['$scope', '$localStorage', '$location', '$http', '$interval', function ($scope, $localStorage, $location, $http, $interval) {
+    $scope.error = false;
     $scope.casos = [];
     $scope.formatPrioridad = function(value) {
         if(value == 1) {
@@ -66,7 +67,8 @@ angular.module('monitorSocial.incidencias', ['ngRoute', 'ngStorage', 'cgBusy'])
         }
     }).then(function successCallback(response) {
         $scope.casos = response.data;
+        $scope.error = false;
     }, function errorCallback(respose) {
-        
+        $scope.error = true;
     });
 }]);

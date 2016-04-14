@@ -61,6 +61,17 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         }
     }).then(function successCallback(response) {
         $scope.caso = response.data;
+        $scope.casoPromise = $http({
+            method: 'GET',
+            url: 'http://localhost:8081/twitterUsers/' + $scope.caso.twitterUserId,
+            headers: {
+                "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
+            }
+        }).then(function succesCallback(response) {
+            $scope.caso.twitterUser = response.data;
+        }, function errorCallback(response) {
+            
+        });
     }, function errorCallback(respose) {
         
     });

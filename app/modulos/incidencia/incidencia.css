@@ -1,0 +1,21 @@
+
+.cliente-pill {
+    margin-top: 40px;
+    padding: 10px !important;
+}
+
+.inner-cliente {
+    border: solid 1px grey;
+    margin-bottom: 0px;
+    padding: 10px !important;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    color: black !important;
+    background-color: white !important;
+}
+
+label {
+    margin-right: 10px;
+}
