@@ -8,6 +8,7 @@
     border: solid 1px grey;
     margin-bottom: 0px;
     padding: 10px !important;
+    border-radius: 0px !important;
 }
 
 .form-control {
@@ -18,4 +19,9 @@
 
 label {
     margin-right: 10px;
+}
+
+textarea {
+    height: auto;
+    resize: none;
 }

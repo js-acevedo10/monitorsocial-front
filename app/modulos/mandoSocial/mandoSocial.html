@@ -74,17 +74,11 @@
             </a>
         </div>
         -->
-        <div class="col-sm-6">
-            <div class="col-xs-12 jumbotron btn-dashboard" style="text-align:left">
-                <h3>Último Post Relevante:</h3>
-                <p>{{relevante.count}}</p>
-                <button class="btn btn-default">Registrar Usuarios Relevantes</button>
-            </div>
-        </div>
-        <div class="col-sm-6">
+        <div class="col-xs-12">
             <div class="col-xs-12 jumbotron btn-dashboard" style="text-align:left">
                 <h3>Configuración Rápida (módulo temporal)</h3>
-                <button class="btn btn-default" ng-click="startListening()">{{twitterListenerButton}}</button>
+                <button class="btn btn-default btn-block" ng-click="startListening()">Start Listening</button>
+                <button class="btn btn-default btn-block" ng-click="stopListening()">Stop Listening</button>
             </div>
         </div>
     </div>

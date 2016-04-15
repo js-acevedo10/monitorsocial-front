@@ -72,9 +72,31 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         }).then(function succesCallback(response) {
             $scope.caso.twitterUser = response.data;
         }, function errorCallback(response) {
-            
+
         });
     }, function errorCallback(respose) {
-        
+
     });
+
+    $scope.addNote = function () {
+        $scope.notePromise = $http({
+            method: 'POST',
+            //url: 'https://monitorsocial-back.herokuapp.com/twitterUsers/' + $scope.caso.twitterUserId,
+            url: 'http://localhost:8081/casos/' + $routeParams.idCaso + "/notas",
+            data: angular.toJson({
+                texto: $scope.nuevaNota,
+                creadorId: "23414",
+                nombreCreador: "Juan"
+            }),
+            headers: {
+                "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
+            }
+        }).then(function succesCallback(response) {
+            $scope.caso = response.data;
+            $scope.nuevaNota = "";
+            $scope.notasError = false;
+        }, function errorCallback(response) {
+            $scope.notasError = true;
+        });
+    }
 }]);

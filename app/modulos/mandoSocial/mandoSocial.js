@@ -19,7 +19,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
     });
 }])
 
-.controller('MandoSocialCtrl', ['$scope', '$localStorage', '$location', '$http', '$interval', function ($scope, $localStorage, $location, $http, $interval) {    
+.controller('MandoSocialCtrl', ['$scope', '$localStorage', '$location', '$http', '$interval', function ($scope, $localStorage, $location, $http, $interval) {
     //CUENTA UNREAD DE TWITTER
     $scope.twitter = {
         unreads: undefined,
@@ -84,7 +84,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         })
     };
     getPositive();
-    $interval(getPositive, 1*60*1000);
+    $interval(getPositive, 1 * 60 * 1000);
 
     //CUENTA UNREAD DE NEGATIVOS
     $scope.negativos = {
@@ -108,7 +108,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         })
     };
     getNegative();
-    $interval(getNegative, 1*60*1000);
+    $interval(getNegative, 1 * 60 * 1000);
 
     //CUENTA UNREAD DE NEUTRALES
     $scope.neutrales = {
@@ -132,44 +132,38 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         })
     };
     getNeutral();
-    $interval(getNeutral, 1*60*1000);
+    $interval(getNeutral, 1 * 60 * 1000);
 
     //BARRA DE HERRAMIENTAS PROVISIONAL
-    $scope.twitterListenerButton = "Start Listening on Twitter";
-    $scope.listeningTwitter = false;
     $scope.startListening = function () {
-        if (!$scope.listeningTwitter) {
-            var accessToken = $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null;
-            $http({
-                method: 'GET',
-                //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/startListening',
-                url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/startListening',
-                headers: {
-                    "Authorization": accessToken
-                }
-            }).then(function successCallback(response) {
-                $scope.success = response.data;
-                $scope.twitterListenerButton = "Stop Listening on Twitter";
-                $scope.listeningTwitter = true;
-            }, function errorCallback(response) {
-                $scope.error = response.data;
-            });
-        } else {
-            var accessToken = $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null;
-            $http({
-                method: 'GET',
-                //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/stopListening',
-                url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/stopListening',
-                headers: {
-                    "Authorization": accessToken
-                }
-            }).then(function successCallback(response) {
-                $scope.success = response.data;
-                $scope.twitterListenerButton = "Start Listening on Twitter";
-                $scope.listeningTwitter = false;
-            }, function errorCallback(response) {
-                $scope.error = response.data;
-            });
-        }
+        var accessToken = $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null;
+        $http({
+            method: 'GET',
+            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/startListening',
+            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/startListening',
+            headers: {
+                "Authorization": accessToken
+            }
+        }).then(function successCallback(response) {
+            $scope.success = response.data;
+        }, function errorCallback(response) {
+            $scope.error = response.data;
+        });
+    };
+
+    $scope.stopListening = function () {
+        var accessToken = $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null;
+        $http({
+            method: 'GET',
+            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/stopListening',
+            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/stopListening',
+            headers: {
+                "Authorization": accessToken
+            }
+        }).then(function successCallback(response) {
+            $scope.success = response.data;
+        }, function errorCallback(response) {
+            $scope.error = response.data;
+        });
     };
 }]);
