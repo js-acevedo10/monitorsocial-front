@@ -45,13 +45,6 @@
                             <button class="btn btn-default" ng-click="responderActivado = !responderActivado">Responder</button>
                             <button class="btn btn-default">Marcar como Resuelto</button>
                         </div>
-                        <div class="col-xs-12" ng-show="responderActivado">
-                            <hr>
-                            <label for="nombre">Escribe tu respuesta:</label>
-                            <br>
-                            <textarea class="input form-control" type="text" maxlength="140" ng-model="respuestaTweet"></textarea>
-                            <button class="btn btn-block btn-default" ng-click="postReply()">Enviar</button>
-                        </div>
                     </div>
                     <hr>
                     <p>Información del Remitente:</p>
@@ -113,14 +106,20 @@
                 <div class="jumbotron inner-cliente">
                     <div class="row" style="margin-left: 10px; margin-right: 10px;">
                         <div class="col-xs-12" ng-repeat="mensaje in caso.conversacion.mensajes">
-                            <p>{{mensaje.text}}</p>
+                            <p ng-class="isMessageMine(mensaje)" class="message"><small>{{mensaje.text}}</small></p>
+                        </div>
+                        <div class="col-xs-12">
+                            <label for="nombre">Envía un mensaje:</label>
+                            <br>
+                            <textarea class="input form-control" type="text" maxlength="140" ng-model="respuestaTweet"></textarea>
+                            <button class="btn btn-block btn-default" ng-click="postReply()">Enviar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- ! PILL DE CONVERSACION-->
-        
+
         <!--PILL DE NOTAS-->
         <div class="container-fluid" ng-show="nav.not" style="background-color:white">
             <div class="jumbotron cliente-pill">

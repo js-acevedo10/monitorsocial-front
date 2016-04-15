@@ -21,6 +21,13 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
 
 .controller('IncidenciaCtrl', ['$scope', '$localStorage', '$location', '$http', '$routeParams', function ($scope, $localStorage, $location, $http, $routeParams) {
     
+    $scope.isMessageMine = function(men) {
+        if(men.userId != $scope.caso.conversacion.idUsuario) {
+            return 'pull-right righty';
+        }
+        return 'pull-left lefty';
+    }
+    
     $scope.responderActivado = false;
     //NAVBAR PILLS
     $scope.nav = {
@@ -84,6 +91,8 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
             }
         }).then(function succesCallback(response) {
             $scope.caso.twitterUser = response.data;
+            $scope.respuestaTweet = "@" + $scope.caso.twitterUser.screenName + " ";
+            $scope.userScreenNameWithAt = $scope.respuestaTweet;
         }, function errorCallback(response) {
 
         });
@@ -116,13 +125,16 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
     };
     
     $scope.postReply = function () {
+        var username = $scope.userScreenNameWithAt + ' ';
+        var fullSending = $scope.respuestaTweet;
+        var realSenging = fullSending.substring(username.length)
         $scope.postreplyPromise = $http({
             method: 'POST',
             //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + "/reply"
             url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + "/reply",
             data: angular.toJson({
                 userScreenName: $scope.caso.twitterUser.screenName,
-                text: $scope.respuestaTweet,
+                text: realSenging,
                 statusId: $scope.caso.conversacion.mensajes[0].statusId,
                 conversacionId: $scope.caso.conversacion.id.$oid
             }),

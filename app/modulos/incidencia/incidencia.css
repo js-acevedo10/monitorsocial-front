@@ -25,3 +25,21 @@ textarea {
     height: auto;
     resize: none;
 }
+
+.message {
+    border: solid 1px black;
+    padding: 5px;
+    word-break: break-all;
+}
+
+.righty {
+    border-radius: 10px 10px 0px 10px;
+    background-color: azure;
+    margin-left: 40px;
+}
+
+.lefty {
+    border-radius: 10px 10px 10px 0px;
+    background-color: cornsilk;
+    margin-right: 40px;
+}
