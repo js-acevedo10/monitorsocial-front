@@ -3,6 +3,7 @@
     <div class="jumbotron" style="padding: 5px 10px;">
         <ul class="nav nav-tabs nav-justified">
             <li role="presentation" ng-class="{'active' : nav.res}"><a href="" ng-click="enableRes()">Resumen</a></li>
+            <li role="presentation" ng-class="{'active' : nav.con}"><a href="" ng-click="enableCon()">Conversacion</a></li>
             <li role="presentation" ng-class="{'active' : nav.not}"><a href="" ng-click="enableNot()">Notas</a></li>
             <li role="presentation" ng-class="{'active' : nav.seg}"><a href="" ng-click="enableSeg()">Seguimiento</a></li>
             <li role="presentation" ng-class="{'active' : nav.sol}"><a href="" ng-click="enableSol()">Soluciones</a></li>
@@ -106,6 +107,20 @@
         </div>
         <!-- ! PILL DE RESUMEN-->
 
+        <!--PILL DE CONVERSACION-->
+        <div class="container-fluid" ng-show="nav.con" style="background-color:white">
+            <div class="jumbotron cliente-pill">
+                <div class="jumbotron inner-cliente">
+                    <div class="row" style="margin-left: 10px; margin-right: 10px;">
+                        <div class="col-xs-12" ng-repeat="mensaje in caso.conversacion.mensajes">
+                            <p>{{mensaje.text}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ! PILL DE CONVERSACION-->
+        
         <!--PILL DE NOTAS-->
         <div class="container-fluid" ng-show="nav.not" style="background-color:white">
             <div class="jumbotron cliente-pill">

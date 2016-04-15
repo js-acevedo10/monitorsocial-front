@@ -35,24 +35,35 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         $scope.nav.not = false;
         $scope.nav.seg = false;
         $scope.nav.sol = false;
+        $scope.nav.con = false;
     }
     $scope.enableNot = function () {
         $scope.nav.res = false;
         $scope.nav.not = true;
         $scope.nav.seg = false;
         $scope.nav.sol = false;
+        $scope.nav.con = false;
     };
     $scope.enableSeg = function () {
         $scope.nav.res = false;
         $scope.nav.not = false;
         $scope.nav.seg = true;
         $scope.nav.sol = false;
+        $scope.nav.con = false;
     };
     $scope.enableSol = function () {
         $scope.nav.res = false;
         $scope.nav.not = false;
         $scope.nav.seg = false;
         $scope.nav.sol = true;
+        $scope.nav.con = false;
+    };
+    $scope.enableCon = function () {
+        $scope.nav.res = false;
+        $scope.nav.not = false;
+        $scope.nav.seg = false;
+        $scope.nav.sol = false;
+        $scope.nav.con = true;
     };
     $scope.casos = {};
     $scope.casoPromise = $http({
@@ -121,7 +132,7 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         }).then(function succesCallback(response) {
             $scope.respuestaTweet = "";
             $scope.responderActivado = false;
-            $scope.funciona = response.data;
+            $scope.caso.conversacion = response.data;
         }, function errorCallback(response) {
             
         });
