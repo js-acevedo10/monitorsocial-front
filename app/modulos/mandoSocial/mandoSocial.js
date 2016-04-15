@@ -25,6 +25,17 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         unreads: undefined,
         count: 0
     };
+    
+    $scope.stop = function() {
+        $interval.cancel(unread);
+        $interval.cancel(positive);
+        $interval.cancel(neutral);
+        $interval.cancel(negative);
+    };
+    
+    $scope.$on('$destroy', function() {
+      $scope.stop();
+    });
 
     function getUnreadMessages() {
         $scope.tUnreadPromise = $http({
@@ -42,7 +53,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         })
     };
     getUnreadMessages();
-    $interval(getUnreadMessages, 1 * 60 * 1000);
+    var unread = $interval(getUnreadMessages, 1 * 60 * 1000);
 
     //CUENTA UNREAD DE FACEBOOK
     $scope.facebook = {
@@ -84,7 +95,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         })
     };
     getPositive();
-    $interval(getPositive, 1 * 60 * 1000);
+    var positive = $interval(getPositive, 1 * 60 * 1000);
 
     //CUENTA UNREAD DE NEGATIVOS
     $scope.negativos = {
@@ -108,7 +119,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         })
     };
     getNegative();
-    $interval(getNegative, 1 * 60 * 1000);
+    var negative = $interval(getNegative, 1 * 60 * 1000);
 
     //CUENTA UNREAD DE NEUTRALES
     $scope.neutrales = {
@@ -132,7 +143,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         })
     };
     getNeutral();
-    $interval(getNeutral, 1 * 60 * 1000);
+    var neutral = $interval(getNeutral, 1 * 60 * 1000);
 
     //BARRA DE HERRAMIENTAS PROVISIONAL
     $scope.startListening = function () {

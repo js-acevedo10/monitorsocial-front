@@ -76,9 +76,9 @@
                             <td>{{caso.etapa}}</td>
                             <td>{{caso.prioridad}}</td>
                             <td>{{caso.categoria}}</td>
-                            <td class="col-md-3">{{caso.descripcion | limitTo: 42}}{{caso.descripcion.length > 42 ? '...' : ''}}</td>
-                            <td class="col-md-2">{{caso.empresa.nombre}}</td>
-                            <td class="col-md-2">{{caso.persona.nombre}}</td>
+                            <td>{{caso.descripcion | limitTo: 42}}{{caso.descripcion.length > 42 ? '...' : ''}}</td>
+                            <td>{{caso.empresa.nombre}}</td>
+                            <td>{{caso.persona.nombre}}</td>
                             <td>{{caso.fechaCreacion}}</td>
                             <td><a href="#/incidencia/{{caso.id.$oid}}" class="btn-sm" style="margin:0">Abrir</a></td>
                         </tr>

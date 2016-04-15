@@ -33,24 +33,32 @@
                             <br>
                             <input class="input form-control" type="text" readonly value="{{caso.fechaCreacion}}">
                         </div>
-                        <div class="col-xs-9">
+                        <div class="col-sm-9">
                             <label for="nombre">Mensaje Original:</label>
                             <br>
                             <textarea class="input form-control" type="text" readonly>{{caso.descripcion}}</textarea>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-sm-3">
                             <label for="nombre">Acciones:</label>
                             <br>
-                            <button class="btn btn-block btn-default">Responder</button>
+                            <button class="btn btn-default" ng-click="responderActivado = !responderActivado">Responder</button>
+                            <button class="btn btn-default">Marcar como Resuelto</button>
+                        </div>
+                        <div class="col-xs-12" ng-show="responderActivado">
+                            <hr>
+                            <label for="nombre">Escribe tu respuesta:</label>
+                            <br>
+                            <textarea class="input form-control" type="text" maxlength="140" ng-model="respuestaTweet"></textarea>
+                            <button class="btn btn-block btn-default" ng-click="postReply()">Enviar</button>
                         </div>
                     </div>
                     <hr>
                     <p>Información del Remitente:</p>
                     <div class="row form">
-                        <div class="col-md-3" style="padding: 0px; text-align: center;">
+                        <div class="col-md-2" style="padding: 0px; text-align: center; padding-left: 10px;">
                             <img src="{{caso.twitterUser.profileImageUrl}}" alt="" style="height: 150px; width: 150px; margin-bottom: 10px;">
                         </div>
-                        <div class="col-md-9" style="padding: 0px;">
+                        <div class="col-md-10" style="padding: 0px;">
                             <div class="col-md-3 col-sm-4 form-group">
                                 <label for="nombre">Nombre:</label>
                                 <br>

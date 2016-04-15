@@ -20,6 +20,8 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
 }])
 
 .controller('IncidenciaCtrl', ['$scope', '$localStorage', '$location', '$http', '$routeParams', function ($scope, $localStorage, $location, $http, $routeParams) {
+    
+    $scope.responderActivado = false;
     //NAVBAR PILLS
     $scope.nav = {
         res: true,
@@ -92,11 +94,36 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
                 "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
             }
         }).then(function succesCallback(response) {
+            var user = $scope.caso.twitterUser;
             $scope.caso = response.data;
+            $scope.caso.twitterUser = user;
             $scope.nuevaNota = "";
             $scope.notasError = false;
         }, function errorCallback(response) {
             $scope.notasError = true;
         });
-    }
+    };
+    
+    $scope.postReply = function () {
+        $scope.postreplyPromise = $http({
+            method: 'POST',
+            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + "/reply"
+            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + "/reply",
+            data: angular.toJson({
+                userScreenName: $scope.caso.twitterUser.screenName,
+                text: $scope.respuestaTweet,
+                statusId: $scope.caso.conversacion.mensajes[0].statusId,
+                conversacionId: $scope.caso.conversacion.id.$oid
+            }),
+            headers: {
+                "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
+            }
+        }).then(function succesCallback(response) {
+            $scope.respuestaTweet = "";
+            $scope.responderActivado = false;
+            $scope.funciona = response.data;
+        }, function errorCallback(response) {
+            
+        });
+    };
 }]);
