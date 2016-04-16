@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/modulos/incidencia/incidencia.css">
-<div class="container-fluid" cg-busy="casoPromise" style="margin-top: 40px;">
-    <div class="jumbotron" style="padding: 5px 10px;">
-        <ul class="nav nav-tabs nav-justified">
+<div class="container-fluid" cg-busy="casoPromise">
+    <div class="jumbotron" style="padding: 5px 10px; margin-bottom: 0;">
+        <ul class="nav nav-tabs">
             <li role="presentation" ng-class="{'active' : nav.res}"><a href="" ng-click="enableRes()">Resumen</a></li>
             <li role="presentation" ng-class="{'active' : nav.con}"><a href="" ng-click="enableCon()">Conversacion</a></li>
             <li role="presentation" ng-class="{'active' : nav.not}"><a href="" ng-click="enableNot()">Notas</a></li>
@@ -41,9 +41,11 @@
                         </div>
                         <div class="col-sm-3">
                             <label for="nombre">Acciones:</label>
+                            <!--
                             <br>
                             <button class="btn btn-default" ng-click="responderActivado = !responderActivado">Responder</button>
                             <button class="btn btn-default">Marcar como Resuelto</button>
+                            -->
                         </div>
                     </div>
                     <hr>
@@ -104,16 +106,24 @@
         <div class="container-fluid" ng-show="nav.con" style="background-color:white">
             <div class="jumbotron cliente-pill">
                 <div class="jumbotron inner-cliente">
-                    <div class="row" style="margin-left: 10px; margin-right: 10px;">
+                    <div class="row" id="chat" style="margin-left: 10px; margin-right: 10px; max-height: 40vh; overflow-y: scroll;" scroll-glue="nav.onCon" cg-busy="postReplyPromise">
                         <div class="col-xs-12" ng-repeat="mensaje in caso.conversacion.mensajes">
-                            <p ng-class="isMessageMine(mensaje)" class="message"><small>{{mensaje.text}}</small></p>
+                            <p ng-class="isMessageMine(mensaje)" class="message" style="font-size: 18px;">
+                                <small>
+                                    <small>
+                                        <b>{{mensaje.userName}} (@{{mensaje.userScreenName}})</b>
+                                    </small>
+                                <br> {{mensaje.text}}
+                                </small>
+                            </p>
                         </div>
-                        <div class="col-xs-12">
-                            <label for="nombre">Envía un mensaje:</label>
-                            <br>
-                            <textarea class="input form-control" type="text" maxlength="140" ng-model="respuestaTweet"></textarea>
-                            <button class="btn btn-block btn-default" ng-click="postReply()">Enviar</button>
-                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" style="margin-left: 10px; margin-right: 10px;">
+                        <label for="nombre">Envía un mensaje:</label>
+                        <br>
+                        <textarea class="input form-control" type="text" maxlength="140" ng-model="respuestaTweet"></textarea>
+                        <button class="btn btn-block btn-default" ng-click="postReply()">Enviar</button>
                     </div>
                 </div>
             </div>

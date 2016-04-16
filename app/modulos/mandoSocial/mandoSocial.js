@@ -40,8 +40,8 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
     function getUnreadMessages() {
         $scope.tUnreadPromise = $http({
             method: 'GET',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
-            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/unreadMessages',
             headers: {
                 "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
             }
@@ -82,8 +82,8 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
     function getPositive() {
         $scope.posUnreadPromise = $http({
             method: 'GET',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/positiveMessages',
-            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/positiveMessages',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/positiveMessages',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/positiveMessages',
             headers: {
                 "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
             }
@@ -106,8 +106,8 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
     function getNegative() {
         $scope.negUnreadPromise = $http({
             method: 'GET',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/negativeMessages',
-            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/negativeMessages',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/negativeMessages',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/negativeMessages',
             headers: {
                 "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
             }
@@ -130,8 +130,8 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
     function getNeutral() {
         $scope.neutUnreadPromise = $http({
             method: 'GET',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/neutralMessages',
-            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/neutralMessages',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/neutralMessages',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/neutralMessages',
             headers: {
                 "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
             }
@@ -150,8 +150,8 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         var accessToken = $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null;
         $http({
             method: 'GET',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/startListening',
-            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/startListening',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/startListening',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/startListening',
             headers: {
                 "Authorization": accessToken
             }
@@ -166,8 +166,8 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
         var accessToken = $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null;
         $http({
             method: 'GET',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/stopListening',
-            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/stopListening',
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + '/stopListening',
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + '/stopListening',
             headers: {
                 "Authorization": accessToken
             }

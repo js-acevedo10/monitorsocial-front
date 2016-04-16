@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
+angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy', 'luegg.directives'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/incidencia/:idCaso', {
@@ -19,12 +19,14 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
     });
 }])
 
-.controller('IncidenciaCtrl', ['$scope', '$localStorage', '$location', '$http', '$routeParams', function ($scope, $localStorage, $location, $http, $routeParams) {
+.controller('IncidenciaCtrl', ['$scope', '$localStorage', '$location', '$http', '$routeParams', '$timeout', function ($scope, $localStorage, $location, $http, $routeParams, $timeout) {
     
     $scope.isMessageMine = function(men) {
         if(men.userId != $scope.caso.conversacion.idUsuario) {
+            $scope.isLefty = false;
             return 'pull-right righty';
         }
+        $scope.isLefty = true;
         return 'pull-left lefty';
     }
     
@@ -34,7 +36,8 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         res: true,
         not: false,
         seg: false,
-        sol: false
+        sol: false,
+        onCon: true
     };
     //NAVBAR METHODS
     $scope.enableRes = function () {
@@ -50,6 +53,7 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         $scope.nav.seg = false;
         $scope.nav.sol = false;
         $scope.nav.con = false;
+        $scope.nav.onCon = true;
     };
     $scope.enableSeg = function () {
         $scope.nav.res = false;
@@ -71,12 +75,16 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         $scope.nav.seg = false;
         $scope.nav.sol = false;
         $scope.nav.con = true;
+        $scope.nav.onCon = true;
+        $timeout(function () {
+            $scope.respuestaTweet = "@" + $scope.caso.twitterUser.screenName + " ";
+        }, 2);
     };
     $scope.casos = {};
     $scope.casoPromise = $http({
         method: 'GET',
-        //url: 'https://monitorsocial-back.herokuapp.com/casos/' + $localStorage.userInfo.id + /caso/ + $routeParams.idCaso,
-        url: 'http://localhost:8081/casos/' + $localStorage.userInfo.id + /caso/ + $routeParams.idCaso,
+        url: 'https://monitorsocial-back.herokuapp.com/casos/' + $localStorage.userInfo.id + /caso/ + $routeParams.idCaso,
+        //url: 'http://localhost:8081/casos/' + $localStorage.userInfo.id + /caso/ + $routeParams.idCaso,
         headers: {
             "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
         }
@@ -84,8 +92,8 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
         $scope.caso = response.data;
         $scope.casoPromise = $http({
             method: 'GET',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitterUsers/' + $scope.caso.twitterUserId,
-            url: 'http://localhost:8081/twitterUsers/' + $scope.caso.twitterUserId,
+            url: 'https://monitorsocial-back.herokuapp.com/twitterUsers/' + $scope.caso.twitterUserId,
+            //url: 'http://localhost:8081/twitterUsers/' + $scope.caso.twitterUserId,
             headers: {
                 "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
             }
@@ -103,8 +111,8 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
     $scope.addNote = function () {
         $scope.notePromise = $http({
             method: 'POST',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitterUsers/' + $scope.caso.twitterUserId,
-            url: 'http://localhost:8081/casos/' + $routeParams.idCaso + "/notas",
+            url: 'https://monitorsocial-back.herokuapp.com/casos/' + $routeParams.idCaso + "/notas",
+            //url: 'http://localhost:8081/casos/' + $routeParams.idCaso + "/notas",
             data: angular.toJson({
                 texto: $scope.nuevaNota,
                 creadorId: "23414",
@@ -127,11 +135,12 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
     $scope.postReply = function () {
         var username = $scope.userScreenNameWithAt + ' ';
         var fullSending = $scope.respuestaTweet;
+        $scope.respuestaTweet = username;
         var realSenging = fullSending.substring(username.length)
-        $scope.postreplyPromise = $http({
+        $scope.postReplyPromise = $http({
             method: 'POST',
-            //url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + "/reply"
-            url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + "/reply",
+            url: 'https://monitorsocial-back.herokuapp.com/twitter/' + $localStorage.userInfo.id + "/reply",
+            //url: 'http://localhost:8081/twitter/' + $localStorage.userInfo.id + "/reply",
             data: angular.toJson({
                 userScreenName: $scope.caso.twitterUser.screenName,
                 text: realSenging,
@@ -142,7 +151,6 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy'])
                 "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
             }
         }).then(function succesCallback(response) {
-            $scope.respuestaTweet = "";
             $scope.responderActivado = false;
             $scope.caso.conversacion = response.data;
         }, function errorCallback(response) {
