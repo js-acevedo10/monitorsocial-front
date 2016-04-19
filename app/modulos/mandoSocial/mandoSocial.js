@@ -75,8 +75,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
 
     //CUENTA UNREAD DE POSITIVOS
     $scope.positivos = {
-        unreads: undefined,
-        count: 0
+        unreads: undefined
     };
 
     function getPositive() {
@@ -89,7 +88,7 @@ angular.module('monitorSocial.mandoSocial', ['ngRoute', 'ngStorage', 'cgBusy'])
             }
         }).then(function successCallback(response) {
             $scope.positivos.unreads = response.data.mensajes;
-            $scope.positivos.count = response.data.count;
+            //$scope.positivos.count = response.data.count;
         }, function errorCallback(response) {
 
         })

@@ -90,7 +90,7 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy', 'l
         }
     }).then(function successCallback(response) {
         $scope.caso = response.data;
-        $scope.casoPromise = $http({
+        $scope.usuarioPromise = $http({
             method: 'GET',
             url: 'https://monitorsocial-back.herokuapp.com/twitterUsers/' + $scope.caso.twitterUserId,
             //url: 'http://localhost:8081/twitterUsers/' + $scope.caso.twitterUserId,
