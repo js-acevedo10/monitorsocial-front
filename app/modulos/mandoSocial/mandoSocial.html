@@ -4,7 +4,7 @@
             <a href="#/tUnreadList">
                 <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
                     <h3>Menciones en Twitter:</h3>
-                    <h1>{{twitter.count}}</h1>
+                    <h1>{{twitter.unreadCount}}</h1>
                 </div>
             </a>
         </div>
@@ -18,25 +18,25 @@
         </div>
         <div class="col-sm-4">
             <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="posUnreadPromise">
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
                     <h3>Menciones Positivas:</h3>
-                    <h1>{{positivos.unreads.length}}</h1>
+                    <h1>{{twitter.positiveCount}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
             <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="neutUnreadPromise">
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
                     <h3>Menciones Neutrales:</h3>
-                    <h1>{{neutrales.count}}</h1>
+                    <h1>{{twitter.neutralCount}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
             <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="negUnreadPromise">
+                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
                     <h3>Menciones Negativas:</h3>
-                    <h1>{{negativos.count}}</h1>
+                    <h1>{{twitter.negativeCount}}</h1>
                 </div>
             </a>
         </div>
