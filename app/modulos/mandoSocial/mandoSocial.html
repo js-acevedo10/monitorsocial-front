@@ -1,8 +1,8 @@
 <div class="container-fluid" style="padding-top:30px; text-align:center">
     <div class="row">
         <div class="col-sm-6">
-            <a href="#/tUnreadList">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+            <a href="#/menciones/nueva">
+                <div class="col-xs-12 jumbotron btn btn-default btn-dashboard" cg-busy="tUnreadPromise">
                     <h3>Menciones en Twitter:</h3>
                     <h1>{{twitter.unreadCount}}</h1>
                 </div>
@@ -10,75 +10,41 @@
         </div>
         <div class="col-sm-6">
             <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard">
+                <div class="col-xs-12 jumbotron btn btn-default btn-dashboard">
                     <h3>Menciones en Facebook:</h3>
                     <h1>{{facebook.count}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+            <a href="#/menciones/positiva">
+                <div class="col-xs-12 jumbotron btn btn-default btn-dashboard" cg-busy="tUnreadPromise">
                     <h3>Menciones Positivas:</h3>
                     <h1>{{twitter.positiveCount}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+            <a href="#/menciones/neutral">
+                <div class="col-xs-12 jumbotron btn btn-default btn-dashboard" cg-busy="tUnreadPromise">
                     <h3>Menciones Neutrales:</h3>
                     <h1>{{twitter.neutralCount}}</h1>
                 </div>
             </a>
         </div>
         <div class="col-sm-4">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
+            <a href="#/menciones/negativa">
+                <div class="col-xs-12 jumbotron btn btn-default btn-dashboard" cg-busy="tUnreadPromise">
                     <h3>Menciones Negativas:</h3>
                     <h1>{{twitter.negativeCount}}</h1>
                 </div>
             </a>
         </div>
-        <!--
-        <div class="col-sm-3">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
-                    <h3>Soporte:</h3>
-                    <h1>{{(twitter.unreads | filter : {categoria:1}).length}}</h1>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-3">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
-                    <h3>Quejas:</h3>
-                    <h1>{{(twitter.unreads | filter : {categoria:2}).length}}</h1>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-3">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
-                    <h3>Peticiones:</h3>
-                    <h1>{{(twitter.unreads | filter : {categoria:3}).length}}</h1>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-3">
-            <a href="">
-                <div class="col-xs-12 jumbotron btn-default btn-dashboard" cg-busy="tUnreadPromise">
-                    <h3>Reclamos:</h3>
-                    <h1>{{(twitter.unreads | filter : {categoria:4}).length}}</h1>
-                </div>
-            </a>
-        </div>
-        -->
         <div class="col-xs-12">
             <div class="col-xs-12 jumbotron btn-dashboard" style="text-align:left">
                 <h3>Configuración Rápida (módulo temporal)</h3>
-                <button class="btn btn-default btn-block" ng-click="startListening()" disabled>Start Listening</button>
-                <button class="btn btn-default btn-block" ng-click="stopListening()" disabled>Stop Listening</button>
+                <button class="btn btn-default btn-block" ng-click="startListening()">Start Listening</button>
+                <button class="btn btn-default btn-block" ng-click="stopListening()">Stop Listening</button>
             </div>
         </div>
     </div>

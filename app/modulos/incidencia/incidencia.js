@@ -109,7 +109,7 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy', 'l
         function refreshConversation() {
             $http({
                 method: 'GET',
-                url: 'https://monitorsocial-back.herokuapp.com/casos/conversaciones' + $scope.caso.conversacion.id.$oid,
+                url: 'https://monitorsocial-back.herokuapp.com/casos/conversaciones/' + $scope.caso.conversacion.id.$oid,
                 //url: 'http://localhost:8081/casos/conversaciones' + $scope.caso.conversacion.id.$oid,
                 headers: {
                     "Authorization": $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null
@@ -119,8 +119,8 @@ angular.module('monitorSocial.incidencia', ['ngRoute', 'ngStorage', 'cgBusy', 'l
             }, function errorCallback(response) {
 
             });
-        };
-        var convInter = $interval(refreshConversation, 1 * 60 * 3600);
+        }
+        var convInter = $interval(refreshConversation, 1 * 30 * 1000);
 
         $scope.addNote = function () {
             $scope.notePromise = $http({

@@ -8,6 +8,7 @@ angular.module('monitorSocial', [
     'monitorSocial.twitterList',
     'monitorSocial.incidencias',
     'monitorSocial.incidencia',
+    'monitorSocial.twitterMenciones',
     'monitorSocial.login'
 ]).
 config(['$routeProvider', function ($routeProvider) {

@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/modulos/twitterMenciones/twitterMenciones.css">
+<div class="container-fluid" style="margin-top: 30px;">
+    <div class="jumbotron">
+        <form action="" class="form row">
+            <div class="col-sm-4">
+                <label for="filtro">Ordenar por:</label>
+                <select name="filtro" id="" class="form-control" ng-model="sort">
+                    <option value="createdAt">Fecha</option>
+                    <option value="sentimiento">Sentimiento</option>
+                    <option value="userScreenName">Nombre</option>
+                    <option value="favoriteCount">Favoritos</option>
+                </select>
+            </div>
+            <div class="col-sm-8">
+                <label for="textoBuscado">Buscar...</label>
+                <input type="text" class="form-control" ng-model="textoBuscado">
+            </div>
+        </form>
+    </div>
+    <div class="row" cg-busy="mencionesPromise">
+        <div class="col-sm-6 col-md-4 container" style="margin-bottom: 30px;" ng-repeat="mencion in menciones | orderBy: sort | filter: textoBuscado">
+            <div class="col-xs-12" ng-class="{'btn-warning': mencion.sentimiento == 5, 'btn-danger': mencion.sentimiento < 5, 'btn-success': mencion.sentimiento > 5}" style="padding: 30px 30px 15px 30px; border: solid 1px gray;">
+                <a href="">
+                    <p class="pull-right closeX">X</p>
+                </a><br>
+                <img src="{{mencion.userProfilePicUrl}}" alt="">
+                <h4>@{{mencion.userScreenName}}</h4>
+                <p class="p-text">{{mencion.text}}</p>
+                <hr>
+                <button class="btn btn-xs btn-info">Sentimiento {{getSentimiento(mencion.sentimiento) | lowercase}}</button>
+                <button class="btn btn-xs btn-info">{{mencion.retweetCount}} retweets</button>
+                <button class="btn btn-xs btn-info">{{mencion.favoriteCount}} likes</button>
+                <hr>
+                <form action="" class="form form-inline">
+                    <div class="form-group col-xs-12" style="padding-left: 0; padding-right: 0;">
+                        <textarea name="" id="" rows="4" style="width:100%; color: black;" maxlength="{{calcMaxLength('@' + mencion.userScreenName)}}" ng-model="mencion.respuesta"></textarea>
+                        <button class="btn btn-default btn-block" style="margin-bottom: 5px;" ng-click="">Responder</button>
+                        <a href="#/incidencia/{{mencion.casoId}}" class="btn btn-default col-xs-6">{{mencion.esCaso? 'Ver Caso': 'Crear Caso'}}</a>
+                        <button ng-click="eliminarMencion(mencion)" class="btn btn-default col-xs-6">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container jumbotron" ng-show="error"><h2>{{error}}.</h2></div>
+    </div>
+</div>
