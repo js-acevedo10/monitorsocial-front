@@ -36,7 +36,7 @@
                         <textarea name="" id="" rows="4" style="width:100%; color: black;" maxlength="{{calcMaxLength('@' + mencion.userScreenName)}}" ng-model="mencion.respuesta"></textarea>
                         <button class="btn btn-default btn-block" style="margin-bottom: 5px;" ng-click="">Responder</button>
                         <a href="#/incidencia/{{mencion.casoId}}" class="btn btn-default col-xs-6">{{mencion.esCaso? 'Ver Caso': 'Crear Caso'}}</a>
-                        <button ng-click="eliminarMencion(mencion)" class="btn btn-default col-xs-6">Eliminar</button>
+                        <button ng-click="eliminarMencion(mencion)" class="btn btn-default col-xs-6" ng-disabled="encion.esCaso?true:false">Eliminar</button>
                     </div>
                 </form>
             </div>
