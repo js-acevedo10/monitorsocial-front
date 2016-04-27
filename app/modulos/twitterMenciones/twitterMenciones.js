@@ -54,7 +54,7 @@ angular.module('monitorSocial.twitterMenciones', ['ngRoute', 'ngStorage', 'cgBus
             return 140 - (nomUsuario.length + 1);
         }
 
-        $scope.sort = 'createdAt';
+        $scope.sort = '-createdAt';
 
         $scope.eliminarMencion = function (mencion)  {
             var accessToken = $localStorage.userInfo !== undefined ? $localStorage.userInfo.accessToken : null;
